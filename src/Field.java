@@ -13,6 +13,8 @@ public class Field extends Pane {
 	private int w, h;
 	ArrayList<Block> blocks = new ArrayList<>();
 	
+	ArrayList<Block> obsBlocks = new ArrayList<>();
+	
 	
 	public int getW() {
 		return w;

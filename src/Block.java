@@ -10,6 +10,23 @@ public class Block extends Rectangle {
 
 	int maxX, maxY;
 	
+	public Block(int x, int y, Block p, Field f) {
+		super(Main1.block_size, Main1.block_size);
+		posX = x;
+		posY = y;
+
+		setTranslateX(posX * Main1.block_size);
+		setTranslateY(posY * Main1.block_size);
+		previous = p;
+		maxX = f.getW();
+		maxY = f.getH();
+	}
+	
+	public void updatePosition() {
+		setTranslateX(posX * Main1.block_size);
+		setTranslateY(posY * Main1.block_size);
+	}
+	
 	
 	
 }
