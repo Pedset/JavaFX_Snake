@@ -56,6 +56,8 @@ public class Field extends Pane {
 		randomX = (int)(Math.random() * w);
 		randomY = (int)(Math.random() * h);
 		boolean conflict = true;
+		
+		// Makes sure that the food doesn't spawn on the obstacle.
 		if (!obsBlocks.isEmpty()) {
 			while(conflict) {
 				conflict= false;
@@ -66,7 +68,7 @@ public class Field extends Pane {
 					if(randomX == b.posX || randomY == b.posY) {
 						conflict = true;
 					}
-			}
+				}
 			}
 		}
 		Food food = new Food(randomX, randomY);
