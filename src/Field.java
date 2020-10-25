@@ -15,6 +15,11 @@ public class Field extends Pane {
 	
 	ArrayList<Block> obsBlocks = new ArrayList<>();
 	
+	int score = 0;
+	int randomX = 0;
+	int randomY = 0;
+	Food f;
+	Snake snake;
 	
 	public int getW() {
 		return w;
@@ -36,7 +41,41 @@ public class Field extends Pane {
 			/// update block
 		}
 		
-		// check if food is Eaten
+		if(isEaten(f)) {
+			score += 50;
+			addFood();
+			
+			// adding new block (waiting)
+			
+		}
+	}
+	
+	
+	public void addFood() {
+
+		randomX = (int)(Math.random() * w);
+		randomY = (int)(Math.random() * h);
+		boolean conflict = true;
+		if (!obsBlocks.isEmpty()) {
+			while(conflict) {
+				conflict= false;
+				 randomX = (int)(Math.random() * w);
+				 randomY = (int)(Math.random() * h);
+				
+				for (Block b: obsBlocks) {
+					if(randomX == b.posX || randomY == b.posY) {
+						conflict = true;
+					}
+			}
+			}
+		}
+		Food food = new Food(randomX, randomY);
+		getChildren().add(food);
+		getChildren().remove(f);
+		f = food;
+	}
+	public boolean isEaten(Food f) {
+		return f.getPosX() == snake.head.posX && f.getPosY() == snake.head.posY;
 	}
 	
 	public Field(int width, int height) {
