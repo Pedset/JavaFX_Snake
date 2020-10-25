@@ -30,6 +30,15 @@ public class Field extends Pane {
 		blocks.add(b);
 	}
 	
+	public void update() {
+		for(int x = 0; x < blocks.size(); x++) {
+			
+			/// update block
+		}
+		
+		// check if food is Eaten
+	}
+	
 	public Field(int width, int height) {
 		w= width;
 		h= height;

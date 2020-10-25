@@ -6,6 +6,15 @@ public class Obstacle {
 	
 	public Obstacle(Field f) {
 			ArrayList<ArrayList<Integer>> newCords = generateObs(f);
+			
+			
+			
+			
+				for (int y = 0 ; y < newCords.size() ; y++) {
+					
+					// making block
+				
+			}
 		}
 	
 	
