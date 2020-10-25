@@ -15,7 +15,7 @@ public class Snake {
 			head = new Block(initial_pos_X, initial_pos_Y, null, f);
 			blocks.add(head);
 			tail = head;
-			// create body block (and the last one is tail.
+			// create body block (tail)
 			for(int i = 1; i< initial_length; i++) {
 				Block b = new Block(initial_pos_X + i, initial_pos_Y, tail, f);
 				blocks.add(b);
