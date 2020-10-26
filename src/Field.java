@@ -90,4 +90,33 @@ public class Field extends Pane {
 		
 	}
 	
+	public void addnewBlock() {
+		Block b = new Block(snake.tail.oldPosX, snake.tail.oldPosY, snake.tail, this);
+		snake.tail = b;
+		
+			// fixes the issue with black box
+			b.setFill((Color.TRANSPARENT));
+		
+		// ******
+		addBlock(b);
+	}
+	
+	public boolean isDead() {
+		for (Block b: blocks) {
+			if(b!= snake.head) {
+				if(b.posX == snake.head.posX && b.posY == snake.head.posY) {
+					// play death sound
+					return true;
+				}
+			}
+		}
+		for (Block b: obsBlocks) {
+				if(b.posX == snake.head.posX && b.posY == snake.head.posY) {
+					// play death sound
+					return true;
+				}
+		}
+		return false;
+	}
+	
 }
