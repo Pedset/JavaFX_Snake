@@ -29,6 +29,15 @@ public class Field extends Pane {
 		return h;
 	}
 	
+	public void addSnake(Snake s) {
+		snake = s;
+		
+		addFood();
+		for(int x = 0; x < s.blocks.size(); x++) {
+			addBlock(s.blocks.get(x));
+		}
+	}
+	
 	private void addBlock(Block b) {
 
 		getChildren().add(b);

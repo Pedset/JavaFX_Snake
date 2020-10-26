@@ -40,6 +40,10 @@ public class Main1 extends Application {
 
 		// Creates field
 		field = new Field(field_width, field_height);
+		
+		
+		field.addSnake(new Snake(il, field));
+		
 		Label score = new Label("Score: 0");
 		score.setFont(Font.font("tahoma", 20));
 		verticalBox.getChildren().addAll(score, field);
@@ -66,7 +70,8 @@ public class Main1 extends Application {
 						al.setOnHiding(e -> {
 							verticalBox.getChildren().clear();
 							field = new Field(field_width, field_height);
-
+						
+							field.addSnake(new Snake(il, field));
 							score.setText("Score: 0");
 							verticalBox.getChildren().addAll(score, field);
 							start();
