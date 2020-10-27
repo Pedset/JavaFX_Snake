@@ -47,6 +47,7 @@ public class Main1 extends Application {
 		Label score = new Label("Score: 0");
 		score.setStyle("-fx-text-fill: #ffffff");
 		score.setFont(Font.font("tahoma", 20));
+		Sound.playSound();
 		
 
 		AnimationTimer timer = new AnimationTimer() {
@@ -75,6 +76,7 @@ public class Main1 extends Application {
 							score.setText("Score: 0");
 							verticalBox.getChildren().addAll(score, field);
 							start();
+							Sound.playSound();
 							// play sound
 						});
 
