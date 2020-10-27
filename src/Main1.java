@@ -45,6 +45,7 @@ public class Main1 extends Application {
 		field.addSnake(new Snake(il, field));
 		
 		Label score = new Label("Score: 0");
+		score.setStyle("-fx-text-fill: #ffffff");
 		score.setFont(Font.font("tahoma", 20));
 		
 
