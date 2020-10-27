@@ -40,14 +40,13 @@ public class Main1 extends Application {
 
 		// Creates field
 		field = new Field(field_width, field_height);
-		
+		field.addObs(new Obstacle(field));
 		
 		field.addSnake(new Snake(il, field));
 		
 		Label score = new Label("Score: 0");
 		score.setFont(Font.font("tahoma", 20));
-		verticalBox.getChildren().addAll(score, field);
-		Scene scene = new Scene(verticalBox);
+		
 
 		AnimationTimer timer = new AnimationTimer() {
 
@@ -83,9 +82,14 @@ public class Main1 extends Application {
 			}
 		};
 		timer.start();
+		
+		
+		verticalBox.getChildren().addAll(score, field);
+		Scene scene = new Scene(verticalBox);
 
 		Image image = new Image("file:bg2.jpg");
 		ImageView img = new ImageView();
+		
 		img.setImage(image);
 		img.fitWidthProperty().bind(stage.widthProperty());
 		img.fitHeightProperty().bind(stage.heightProperty());
@@ -107,6 +111,8 @@ public class Main1 extends Application {
 
 		stage.setResizable(false);
 		stage.setScene(scene);
+		stage.getIcons().add(new Image("file:snakeicon.png"));
+		stage.setResizable(false);
 		stage.show();
 	}
 

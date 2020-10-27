@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -63,7 +61,7 @@ public class Field extends Pane {
 	
 	public void update() {
 		for(int x = 0; x < blocks.size(); x++) {
-			
+			blocks.get(x).update();
 			if (x == 0){
 				if(blocks.get(x).direction==0) {
 					if(blocks.get(0).posY - randomY > -1 && blocks.get(0).posY - randomY < 3 && blocks.get(0).posX == randomX) {
@@ -173,24 +171,23 @@ public class Field extends Pane {
 						
 						
 			}else {
-				if(blocks.get(x).posX > blocks.get(x-1).posX) {
+				if(blocks.get(x).posX - blocks.get(x-1).posX ==1 || (blocks.get(x-1).posX- blocks.get(x).posX > 10 && blocks.get(x).posX == 0)) {
 					blocks.get(x).setFill(new ImagePattern(new Image("file:tailleft.png")));
-				}else if(blocks.get(x).posX < blocks.get(x-1).posX){
+				}else if(blocks.get(x-1).posX - blocks.get(x).posX ==1 || (blocks.get(x).posX - blocks.get(x-1).posX > 10 && blocks.get(x).posX == 69)){
 					blocks.get(x).setFill(new ImagePattern(new Image("file:tailright.png")));
-				 }else if(blocks.get(x).posY < blocks.get(x-1).posY){
+				 }else if( blocks.get(x-1).posY - blocks.get(x).posY ==1 || (blocks.get(x).posY - blocks.get(x-1).posY > 10 && blocks.get(x).posY == 34)){
 					blocks.get(x).setFill(new ImagePattern(new Image("file:taildown.png")));
-				  }else {
+				  }else if(blocks.get(x).posY - blocks.get(x-1).posY ==1 || (blocks.get(x-1).posY - blocks.get(x).posY > 10 && blocks.get(x).posY == 0) ){
 					blocks.get(x).setFill(new ImagePattern(new Image("file:tailup.png")));
 				  }
 			 }
 		}
 		
 		if(isEaten(f)) {
+			/// sound call (bite apple)
 			score += 50;
 			addFood();
-			
-			// adding new block (waiting)
-			
+			addnewBlock();
 		}
 	}
 	
@@ -229,7 +226,6 @@ public class Field extends Pane {
 		h= height;
 		//
 		setMinSize(w * Main1.block_size, h * Main1.block_size);
-		setBackground(new Background(new BackgroundFill(Color.BLACK,null, null)));
 		setBorder(new Border(new BorderStroke(Color.WHITE,BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
 		
 	}

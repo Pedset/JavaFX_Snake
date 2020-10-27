@@ -12,7 +12,8 @@ public class Obstacle {
 			
 				for (int y = 0 ; y < newCords.size() ; y++) {
 					
-					// making block
+					Block b = new Block(newCords.get(y).get(0), newCords.get(y).get(1) , null, f);
+					blocks.add(b);
 				
 			}
 		}
