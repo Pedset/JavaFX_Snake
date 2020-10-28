@@ -35,21 +35,21 @@ public class Sound {
 			}
 		}).start();
 	}
-	
+
 	public static synchronized void playDeathSound() {
-		  new Thread(new Runnable() {
-		    public void run() {
-		      try {
-		    	  clipdeath = AudioSystem.getClip();
-		        AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("./deathsound.wav"));
-		        clipdeath.open(inputStream);
-		        clipdeath.start(); 
-		      } catch (Exception e) {
-		        System.err.println(e.getMessage());
-		      }
-		    }
-		  }).start();
-		}
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					clipdeath = AudioSystem.getClip();
+					AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("./deathsound.wav"));
+					clipdeath.open(inputStream);
+					clipdeath.start();
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
+			}
+		}).start();
+	}
 
 	public static synchronized void biteSound() {
 		new Thread(new Runnable() {
@@ -67,12 +67,13 @@ public class Sound {
 	}
 
 	public static void stopAudio() {
-		if(clip!=null) {
+		if (clip != null) {
 			clip.stop();
 			clip.close();
-			}if(clipbite!=null) {
+		}
+		if (clipbite != null) {
 			clipbite.stop();
 			clipbite.close();
-			}
+		}
 	}
 }
