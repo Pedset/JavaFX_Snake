@@ -90,7 +90,7 @@ public class Main1 extends Application {
 							verticalBox.getChildren().addAll(score, field);
 							start();
 							Sound.playSound();
-							// play sound
+
 						});
 
 					}

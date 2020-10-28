@@ -19,14 +19,14 @@ public class Sound {
 					clip = AudioSystem.getClip();
 					AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("./backgroundMusic.wav"));
 					clip.open(inputStream);
-
+     
+					// Volume controller
 					FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-
+					// Min 0.0 -  Max 1.0
 					double gain = 0.15;
-
 					float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
-
 					gainControl.setValue(dB);
+
 					clip.loop(Clip.LOOP_CONTINUOUSLY);
 					clip.start();
 				} catch (Exception e) {

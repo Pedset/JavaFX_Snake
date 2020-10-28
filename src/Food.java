@@ -5,6 +5,8 @@ import javafx.scene.shape.Rectangle;
 public class Food extends Rectangle {
 	int posX, posY;
 
+	
+	//getters for position x and y
 	public int getPosX() {
 		return posX;
 	}
@@ -12,7 +14,8 @@ public class Food extends Rectangle {
 	public int getPosY() {
 		return posY;
 	}
-
+			
+	// Draws food at coordinates X and Y then adds an image to the block
 	public Food(int x, int y) {
 		super(Main1.block_size, Main1.block_size);
 

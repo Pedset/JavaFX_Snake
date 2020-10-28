@@ -10,6 +10,7 @@ public class Block extends Rectangle {
 
 	int maxX, maxY;
 
+	// Draws the block at coordinates X and Y then sets the block as previous . sets max X and max Y
 	public Block(int x, int y, Block p, Field f) {
 		super(Main1.block_size, Main1.block_size);
 		posX = x;
@@ -22,6 +23,7 @@ public class Block extends Rectangle {
 		maxY = f.getH();
 	}
 
+	// Update the position/direction if we don't have the previous
 	public void update() {
 		oldPosX = posX;
 		oldPosY = posY;
@@ -50,8 +52,10 @@ public class Block extends Rectangle {
 		updatePosition();
 	}
 
+	 // Depending on which direction we are heading we change the coordinates
 	private void moveLeft() {
 		posX--;
+		// Goes thru the wall
 		if (posX < 0) {
 			posX = maxX - 1;
 		}
