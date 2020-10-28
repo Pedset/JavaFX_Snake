@@ -23,10 +23,20 @@ public class Main1 extends Application {
 	static int block_size = 20;
 	int field_width = 70, field_height = 35;
 	Field field;
+	
 	int il = 5;
 	long then = System.nanoTime();
-
+	
 	boolean changed = false;
+	
+	// Que next move
+	int nextUpdate;
+	boolean hasNext = false;
+	// pause
+	boolean pause = false;
+	
+	int speed = 8;
+	
 
 	public static void main(String[] args) {
 		launch(args);
@@ -54,15 +64,20 @@ public class Main1 extends Application {
 
 			@Override
 			public void handle(long now) {
-				if (now - then > 1000000000 / 8) {
+				if (now - then > 1000000000 / speed) {
 					field.update();
 					then = now;
 					score.setText("Score: " + field.score);
 					changed = false;
+					checkSpeed();
+					if(hasNext) {
+						setDirection(field.snake, nextUpdate);
+						hasNext= false;
+					}
 
 					if (field.isDead()) {
 						stop();
-//					stop sound
+						Sound.stopAudio();
 						Alert al = new Alert(AlertType.INFORMATION);
 						al.setHeaderText("You Lost!");
 						al.setContentText("Your Score is " + field.score);
@@ -89,7 +104,7 @@ public class Main1 extends Application {
 		
 		verticalBox.getChildren().addAll(score, field);
 		Scene scene = new Scene(verticalBox);
-
+		
 		Image image = new Image("file:bg2.jpg");
 		ImageView img = new ImageView();
 		
@@ -99,9 +114,18 @@ public class Main1 extends Application {
 		verticalBox.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
 				new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, true, true, true, true))));
-
+		
 		scene.setOnKeyPressed(e -> {
-			if (e.getCode().equals(KeyCode.UP) && field.snake.getDirection() != Block.DOWN) {
+			if(e.getCode().equals(KeyCode.ESCAPE)) {
+				if (pause) {
+					  pause = false;
+					  timer.start();
+					} else {
+					  pause = true;
+					  timer.stop();
+					}
+			}
+			else if(e.getCode().equals(KeyCode.UP) && field.snake.getDirection() != Block.DOWN) {
 				setDirection(field.snake, Block.UP);
 			} else if (e.getCode().equals(KeyCode.DOWN) && field.snake.getDirection() != Block.UP) {
 				setDirection(field.snake, Block.DOWN);
@@ -112,7 +136,7 @@ public class Main1 extends Application {
 			}
 		});
 
-		stage.setResizable(false);
+		
 		stage.setScene(scene);
 		stage.getIcons().add(new Image("file:snakeicon.png"));
 		stage.setResizable(false);
@@ -123,6 +147,13 @@ public class Main1 extends Application {
 		if (!changed) {
 			s.setDirection(d);
 			changed = true;
+		}else {
+			hasNext=true;
+			nextUpdate= d;
 		}
+	}
+	
+	public void checkSpeed() {
+		speed = field.getScore()/300 + 8;
 	}
 }

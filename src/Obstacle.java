@@ -37,10 +37,10 @@ public class Obstacle {
 				        int min = 0;
 				        int range = max - min + 1;
 				        randomCords[b] = (int)(Math.random() * range) + min;
-				        if(a==2 && b==0) randomCords[b]+=(69/2);
-						else if(a==3 && b==1) randomCords[b]+=(29/2);
-						else if(a==4 && b==0) randomCords[b]+=(69/2);
-						else if(a==4 && b==1) randomCords[b]+=(29/2);
+				        if(a==2 && b==0) randomCords[b]+=(60/2);
+						else if(a==3 && b==1) randomCords[b]+=(24/2);
+						else if(a==4 && b==0) randomCords[b]+=(60/2);
+						else if(a==4 && b==1) randomCords[b]+=(24/2);
 						}
 					for (int c = 0; c <= ((int)(Math.random() * (10 - 5 + 1)) + 5); c++) { 						 //random length between 10 and 5
 						ArrayList<Integer> cords = new ArrayList<>();

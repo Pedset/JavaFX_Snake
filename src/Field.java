@@ -16,10 +16,17 @@ public class Field extends Pane {
 	ArrayList<Block> obsBlocks = new ArrayList<>();
 	
 	int score = 0;
+	
+	
+
 	int randomX = 0;
 	int randomY = 0;
 	Food f;
 	Snake snake;
+	
+	public int getScore() {
+		return score;
+	}
 	
 	public int getW() {
 		return w;
@@ -52,7 +59,7 @@ public class Field extends Pane {
 	}
 	private void addObsBlock(Block b) {
 		
-		Image img = new Image("file:ok.gif");
+		Image img = new Image("file:fire.gif");
 		b.setFill(new ImagePattern(img));
 		
 		getChildren().add(b);
@@ -184,7 +191,7 @@ public class Field extends Pane {
 		}
 		
 		if(isEaten(f)) {
-			/// sound call (bite apple)
+			Sound.biteSound();
 			score += 50;
 			addFood();
 			addnewBlock();
@@ -245,14 +252,14 @@ public class Field extends Pane {
 		for (Block b: blocks) {
 			if(b!= snake.head) {
 				if(b.posX == snake.head.posX && b.posY == snake.head.posY) {
-					// play death sound
+					Sound.playDeathSound();
 					return true;
 				}
 			}
 		}
 		for (Block b: obsBlocks) {
 				if(b.posX == snake.head.posX && b.posY == snake.head.posY) {
-					// play death sound
+					Sound.playDeathSound();
 					return true;
 				}
 		}
