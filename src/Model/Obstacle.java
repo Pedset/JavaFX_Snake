@@ -10,7 +10,7 @@ public class Obstacle {
 		ArrayList<ArrayList<Integer>> newCords = generateObs(f);
 		
 		for (int y = 0; y < newCords.size(); y++) {
-			if(!(newCords.get(y).get(0) < 34 && newCords.get(y).get(0) > 23 && newCords.get(y).get(1) == 17)) {
+			if(!(newCords.get(y).get(0) < 35 && newCords.get(y).get(0) > 23 && newCords.get(y).get(1) == 17)) {
 				Block b = new Block(newCords.get(y).get(0), newCords.get(y).get(1), null, f);
 			blocks.add(b);
 			}
