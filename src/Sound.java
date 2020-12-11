@@ -23,7 +23,7 @@ public class Sound {
 					// Volume controller
 					FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 					// Min 0.0 -  Max 1.0
-					double gain = 0.15;
+					double gain = 0.35;
 					float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
 					gainControl.setValue(dB);
 

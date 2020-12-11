@@ -15,6 +15,7 @@ public class Obstacle {
 		}
 	}
 
+	
 	public ArrayList<ArrayList<Integer>> generateObs(Field f) {
 
 		ArrayList<ArrayList<Integer>> obsCord = new ArrayList<>();
